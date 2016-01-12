@@ -6,84 +6,112 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Proxy;
 
 @Entity
 @Table(name = "customer")
+@Proxy(lazy = false)
 public class Customer {
-	
-	private int id;
-	private String vatIdNumber;
-	private String companyName;
-	private String streetName;
-	private int streetNumber;
-	private int apartmentNumber;
-	private String postalCode;
-	private String cityName;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
+	@Column(name = "customer_id")
+	@NotNull
+	private int id;
+
+	@Column(name = "vat_id_number")
+	@Size(min = 8, max = 16, message = "{Customer.vatIdNumber.validation}")
+	private String vatIdNumber;
+
+	@Column(name = "company_name")
+	@Size(min = 2, max = 256, message = "{Customer.companyName.validation}")
+	private String companyName;
+
+	@Column(name = "street_name")
+	@Size(min = 2, max = 256, message = "{Customer.streetName.validation}")
+	private String streetName;
+
+	@Column(name = "street_number")
+	@Size(min = 1, max = 8, message = "{Customer.streetNumber.validation}")
+	private String streetNumber;
+
+	@Column(name = "apartment_number")
+	@Size(max = 8, message = "{Customer.apartmentNumber.validation}")
+	private String apartmentNumber;
+
+	@Column(name = "postal_code")
+	@Size(min = 5, max = 8, message = "{Customer.postalCode.validation}")
+	private String postalCode;
+
+	@Column(name = "city_name")
+	@Size(min = 2, max = 256, message = "{Customer.cityName.validation}")
+	private String cityName;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	@Column(name = "vat_id_number")
+
 	public String getVatIdNumber() {
 		return vatIdNumber;
 	}
+
 	public void setVatIdNumber(String vatIdNumber) {
 		this.vatIdNumber = vatIdNumber;
 	}
-	
-	@Column(name = "company_name")
+
 	public String getCompanyName() {
 		return companyName;
 	}
+
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-	
-	@Column(name = "street_name")
+
 	public String getStreetName() {
 		return streetName;
 	}
+
 	public void setStreetName(String streetName) {
 		this.streetName = streetName;
 	}
-	
-	@Column(name = "street_number")
-	public int getStreetNumber() {
+
+	public String getStreetNumber() {
 		return streetNumber;
 	}
-	public void setStreetNumber(int streetNumber) {
+
+	public void setStreetNumber(String streetNumber) {
 		this.streetNumber = streetNumber;
 	}
-	
-	@Column(name = "apartment_number")
-	public int getApartmentNumber() {
+
+	public String getApartmentNumber() {
 		return apartmentNumber;
 	}
-	public void setApartmentNumber(int apartmentNumber) {
+
+	public void setApartmentNumber(String apartmentNumber) {
 		this.apartmentNumber = apartmentNumber;
 	}
-	
-	@Column(name = "postal_code")
+
 	public String getPostalCode() {
 		return postalCode;
 	}
+
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
-	
-	@Column(name = "city_name")
+
 	public String getCityName() {
 		return cityName;
 	}
+
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
 	}
-	
+
 }
