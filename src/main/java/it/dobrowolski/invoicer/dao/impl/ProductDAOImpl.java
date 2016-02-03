@@ -15,8 +15,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	private SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sf) {
-		this.sessionFactory = sf;
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
 	public void addProduct(Product product) {

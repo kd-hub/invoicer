@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
 
 import it.dobrowolski.invoicer.dao.ProductDAO;
 import it.dobrowolski.invoicer.model.Product;
@@ -23,6 +24,7 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	public void addProduct(Product product) {
 		this.productDAO.addProduct(product);
+		
 	}
 
 	@Transactional
@@ -43,5 +45,37 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	public Product getProductById(int id) {
 		return this.productDAO.getProductById(id);
+	}
+
+	public boolean validateNewProduct(Product product, Errors errors) {
+		if (product.getSellingPrice().compareTo(product.getPurchasePrice()) < 0 ) {
+			errors.rejectValue("sellingPrice", "Product.sellingPrice.error");
+			return false;
+		}
+		return true;
+	}
+
+	public boolean validateSelectedProduct(Product product, Errors errors) {
+		if (product.getItemSellingPrice() == null) {
+			errors.rejectValue("selectedProduct.itemSellingPrice", "Product.itemSellingPrice.notnull");
+		}
+		if (product.getItemSellingQuantity() == null) {
+			errors.rejectValue("selectedProduct.itemSellingQuantity", "Product.itemSellingQuantity.notnull");
+		}
+		System.out.println("B£ÊDY: " + errors.getAllErrors().toString());
+		if (!errors.getAllErrors().isEmpty()) {
+			return false;	
+		}
+		if (product.getItemSellingPrice().compareTo(product.getPurchasePrice()) < 0) {
+			errors.rejectValue("selectedProduct.itemSellingPrice", "Product.itemSellingPrice.error");
+		}
+		if (product.getItemSellingQuantity().compareTo(product.getStockQuantity()) > 0) {
+			errors.rejectValue("selectedProduct.itemSellingQuantity", "Product.itemSellingQuantity.error");
+		}
+		if (!errors.getAllErrors().isEmpty()) {
+			return false;	
+		} else {
+			return true;			
+		}
 	}
 }

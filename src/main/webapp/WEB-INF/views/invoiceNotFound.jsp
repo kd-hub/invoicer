@@ -9,8 +9,8 @@
 					<div class="col-md-10 col-md-offset-1">
 						<div class="callout callout-danger">
 							<h4>Błąd</h4>
-							<p>Brak produktu o podanym identyfikatorze:
-								${invalidProductId}.</p>
+							<p>Brak faktury o podanym identyfikatorze:
+								${invalidInvoiceId}.</p>
 						</div>
 					</div>
 				</section>

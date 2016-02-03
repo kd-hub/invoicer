@@ -77,4 +77,7 @@
 			</div>
 		</div>
 	</tiles:putAttribute>
+	<tiles:putAttribute name="scripts">
+		<div></div>
+	</tiles:putAttribute>
 </tiles:insertDefinition>

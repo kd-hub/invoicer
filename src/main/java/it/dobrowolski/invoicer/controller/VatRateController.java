@@ -30,7 +30,7 @@ public class VatRateController {
 	@RequestMapping(value = "/vatrate/list", method = RequestMethod.GET)
 	public String vatrate(Model model) {
 		model.addAttribute("vatRateList", vatRateService.listVatRates());
-		return "vatrate";
+		return "vatratesList";
 	}
 	
 	@RequestMapping(value = "/vatrate/add", method = RequestMethod.GET)

@@ -20,14 +20,19 @@
 							<c:forEach items="${vatRateList}" var="vatrate">
 								<tr>
 									<td>${vatrate.vatRate}</td>
-									<td><a href="<c:url value='/vatrate/remove/${vatrate.id}' />">usuń</a></td>
+									<td><a
+										href="<c:url value='/vatrate/remove/${vatrate.id}' />">usuń</a></td>
 								</tr>
 							</c:forEach>
 						</table>
 					</c:if>
-					<a href="<c:url value='/vatrate/add'/>" class="btn btn-info pull-right">Dodaj nową stawkę VAT</a>
+					<a href="<c:url value='/vatrate/add'/>"
+						class="btn btn-info pull-right">Dodaj nową stawkę VAT</a>
 				</section>
 			</div>
 		</div>
+	</tiles:putAttribute>
+	<tiles:putAttribute name="scripts">
+		<div></div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

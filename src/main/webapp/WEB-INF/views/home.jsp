@@ -4,9 +4,10 @@
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 		<div class="content-wrapper">
-			<div class="container">
-
-			</div>
+			<div class="container"></div>
 		</div>
+	</tiles:putAttribute>
+	<tiles:putAttribute name="scripts">
+		<div></div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

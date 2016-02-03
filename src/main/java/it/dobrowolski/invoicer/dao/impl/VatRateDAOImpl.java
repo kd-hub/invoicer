@@ -14,8 +14,8 @@ public class VatRateDAOImpl implements VatRateDAO {
 
 	private SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sf) {
-		this.sessionFactory = sf;
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
 	public void addVatRate(VatRate rate) {

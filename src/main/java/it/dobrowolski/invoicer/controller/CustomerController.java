@@ -32,10 +32,10 @@ public class CustomerController {
 		this.customerService = customerService;
 	}
 
-	@RequestMapping(value = "/customer", method = RequestMethod.GET)
+	@RequestMapping(value = "/customer/list", method = RequestMethod.GET)
 	public String customer(Model model) {
 		model.addAttribute("customersList", customerService.listCustomers());
-		return "customer";
+		return "customersList";
 	}
 
 	@RequestMapping(value = "/customer/add", method = RequestMethod.GET)
@@ -52,7 +52,7 @@ public class CustomerController {
 			return "addCustomer";
 		}
 		customerService.addCustomer(newCustomer);
-		return "redirect:/customer";
+		return "redirect:/customer/list";
 	}
 	
 	@RequestMapping(value="/customer/edit/{id}", method = RequestMethod.GET)
@@ -67,13 +67,13 @@ public class CustomerController {
 			return "editCustomer";
 		}
 		customerService.updateCustomer(customer);
-		return "redirect:/customer";
+		return "redirect:/customer/list";
 	}
 
 	@RequestMapping("/customer/remove/{id}")
 	public String removeCustomer(@PathVariable("id") int id) {
 		this.customerService.removeCustomer(id);
-		return "redirect:/customer";
+		return "redirect:/customer/list";
 	}
 
 	@InitBinder

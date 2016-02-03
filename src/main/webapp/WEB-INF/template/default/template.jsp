@@ -17,6 +17,8 @@
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/_all-skins.min.css" />"
 	rel="stylesheet">
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 <title>Invoicer</title>
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
@@ -33,5 +35,8 @@
 	<script src="<c:url value="/resources/js/jquery.slimscroll.min.js" />"></script>
 	<!-- AdminLTE App -->
 	<script src="<c:url value="/resources/js/app.min.js" />"></script>
+	<!-- jQuery UI -->
+ 	<script src="<c:url value="/resources/js/jquery-ui.min.js" />"></script>
 </body>
+<tiles:insertAttribute name="scripts" />
 </html>

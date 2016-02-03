@@ -56,6 +56,8 @@
 				<beans:value>it.dobrowolski.invoicer.model.Customer</beans:value>
 				<beans:value>it.dobrowolski.invoicer.model.VatRate</beans:value>
 				<beans:value>it.dobrowolski.invoicer.model.Product</beans:value>
+				<beans:value>it.dobrowolski.invoicer.model.Invoice</beans:value>
+				<beans:value>it.dobrowolski.invoicer.model.InvoiceLine</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -102,4 +104,13 @@
 		<beans:property name="productDAO" ref="productDAO"></beans:property>
 	</beans:bean>
 
+	<beans:bean id="invoiceDAO" class="it.dobrowolski.invoicer.dao.impl.InvoiceDAOImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="invoiceService"
+		class="it.dobrowolski.invoicer.service.impl.InvoiceServiceImpl">
+		<beans:property name="invoiceDAO" ref="invoiceDAO"></beans:property>
+	</beans:bean>
+	
 </beans:beans>

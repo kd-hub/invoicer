@@ -19,24 +19,30 @@
 						</div>
 						<form:form modelAttribute="newVatRate" class="form-horizontal">
 							<div class="box-body">
-							<form:errors path="*" cssClass="alert alert-danger" element="div"/>
+								<form:errors path="*" cssClass="alert alert-danger"
+									element="div" />
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="vatRate">Stawka VAT</label>
+									<label class="col-sm-2 control-label" for="vatRate">Stawka
+										VAT</label>
 									<div class=col-sm-2>
-										<form:input id="vatRate" path="vatRate" type="text" class="form-control" />
-										
+										<form:input id="vatRate" path="vatRate" type="text"
+											class="form-control" />
+
 									</div>
-									<form:errors path="vatRate" cssClass="text-danger"/>
+									<form:errors path="vatRate" cssClass="text-danger" />
 								</div>
 							</div>
 							<div class="box-footer">
-							<a href="<c:url value='/vatrate/list'/>" class="btn btn-default">Anuluj</a>
-							<button type="submit" class="btn btn-info pull-right">Dodaj</button>
+								<a href="<c:url value='/vatrate/list'/>" class="btn btn-default">Anuluj</a>
+								<button type="submit" class="btn btn-info pull-right">Dodaj</button>
 							</div>
 						</form:form>
 					</div>
 				</section>
 			</div>
 		</div>
+	</tiles:putAttribute>
+	<tiles:putAttribute name="scripts">
+		<div></div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

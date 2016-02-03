@@ -9,11 +9,6 @@
 					<h1>
 						Klienci <small>Lista klientów</small>
 					</h1>
-					<ol class="breadcrumb">
-						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-						<li><a href="#">Layout</a></li>
-						<li class="active">Top Navigation</li>
-					</ol>
 				</section>
 				<section class="content">
 					<c:if test="${!empty customersList}">
@@ -38,15 +33,21 @@
 									<td>${customer.apartmentNumber}</td>
 									<td>${customer.postalCode}</td>
 									<td>${customer.cityName}</td>
-									<td><a href="<c:url value='/customer/edit/${customer.id}' />">edytuj</a></td>
-									<td><a href="<c:url value='/customer/remove/${customer.id}' />">usuń</a></td>
+									<td><a
+										href="<c:url value='/customer/edit/${customer.id}' />">edytuj</a></td>
+									<td><a
+										href="<c:url value='/customer/remove/${customer.id}' />">usuń</a></td>
 								</tr>
 							</c:forEach>
 						</table>
 					</c:if>
-					<a href="<c:url value='/customer/add'/>" class="btn btn-info pull-right">Dodaj nowego klienta</a>
+					<a href="<c:url value='/customer/add'/>"
+						class="btn btn-info pull-right">Dodaj nowego klienta</a>
 				</section>
 			</div>
 		</div>
+	</tiles:putAttribute>
+	<tiles:putAttribute name="scripts">
+		<div></div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

@@ -28,16 +28,22 @@
 									<td>${product.purchasePrice}</td>
 									<td>${product.sellingPrice}</td>
 									<td>${product.stockQuantity}</td>
-									<td>${product.vatRate.vatRate}</td>
-									<td><a href="<c:url value='/product/edit/${product.id}' />">edytuj</a></td>
-									<td><a href="<c:url value='/product/remove/${product.id}' />">usuń</a></td>
+									<td>${product.vatRate.vatRate}%</td>
+									<td><a
+										href="<c:url value='/product/edit/${product.id}' />">edytuj</a></td>
+									<td><a
+										href="<c:url value='/product/remove/${product.id}' />">usuń</a></td>
 								</tr>
 							</c:forEach>
 						</table>
 					</c:if>
-					<a href="<c:url value='/product/add'/>" class="btn btn-info pull-right">Dodaj nowy produkt</a>
+					<a href="<c:url value='/product/add'/>"
+						class="btn btn-info pull-right">Dodaj nowy produkt</a>
 				</section>
 			</div>
 		</div>
+	</tiles:putAttribute>
+	<tiles:putAttribute name="scripts">
+		<div></div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

@@ -12,9 +12,9 @@
 					<c:out
 						value="${requestScope['javax.servlet.forward.servlet_path']}" />
  -->
-					<li class="active"><a href="<c:url value='/customer/' />">Klienci</a></li>
-					<li><a href="<c:url value='/product/' />">Produkty</a></li>
-					<li><a href="#">Faktury</a></li>
+					<li class="active"><a href="<c:url value='/customer/list' />">Klienci</a></li>
+					<li><a href="<c:url value='/product/list' />">Produkty</a></li>
+					<li><a href="<c:url value='/invoice/list' />">Faktury</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Raporty<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">

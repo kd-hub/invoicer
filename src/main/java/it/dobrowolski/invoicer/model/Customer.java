@@ -1,5 +1,7 @@
 package it.dobrowolski.invoicer.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +16,9 @@ import org.hibernate.annotations.Proxy;
 @Entity
 @Table(name = "customer")
 @Proxy(lazy = false)
-public class Customer {
+public class Customer implements Serializable {
+
+	private static final long serialVersionUID = 797159961564980833L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -112,6 +116,28 @@ public class Customer {
 
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 }

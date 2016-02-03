@@ -61,9 +61,9 @@
 									<label class="col-sm-2 control-label" for="vatRate">Stawka
 										VAT</label>
 									<div class=col-sm-9>
-											<form:select path="vatRate" items="${vatRatesList}">
-<%-- 												<form:options items="${vatRatesList}"/> --%>
-											</form:select>
+										<form:select path="vatRate" items="${vatRatesList}">
+											<%-- 												<form:options items="${vatRatesList}"/> --%>
+										</form:select>
 									</div>
 								</div>
 							</div>
@@ -76,5 +76,8 @@
 				</section>
 			</div>
 		</div>
+	</tiles:putAttribute>
+	<tiles:putAttribute name="scripts">
+		<div></div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

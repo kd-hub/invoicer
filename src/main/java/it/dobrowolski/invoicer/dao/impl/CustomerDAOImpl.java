@@ -15,8 +15,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	private SessionFactory sessionFactory;
 	
-	public void setSessionFactory(SessionFactory sf){
-		this.sessionFactory = sf;
+	public void setSessionFactory(SessionFactory sessionFactory){
+		this.sessionFactory = sessionFactory;
 	}
 	
 	@SuppressWarnings("unchecked")

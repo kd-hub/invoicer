@@ -50,10 +50,10 @@ public class ProductController {
 	
 	private Map<String,String> vatRatesListMap;
 	
-	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	@RequestMapping(value = "/product/list", method = RequestMethod.GET)
 	public String product(Model model) {
 		model.addAttribute("productsList", productService.listProducts());
-		return "product";
+		return "productsList";
 	}
 	
 	@RequestMapping(value = "/product/add", method = RequestMethod.GET)
@@ -68,12 +68,12 @@ public class ProductController {
 	@RequestMapping(value = "/product/add", method = RequestMethod.POST)
 	public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product newProduct,
 			BindingResult result, Model model) {
-		if (result.hasErrors()) {
+		if (result.hasErrors() || !productService.validateNewProduct(newProduct, result)) {
 			model.addAttribute("vatRatesList", vatRatesListMap);
 			return "addProduct";
 		}
 		productService.addProduct(newProduct);
-		return "redirect:/product";
+		return "redirect:/product/list";
 	}
 	
 	@RequestMapping(value="/product/edit/{id}", method = RequestMethod.GET)
@@ -86,18 +86,18 @@ public class ProductController {
 	
 	@RequestMapping(value="/product/edit/{id}", method = RequestMethod.POST)
 	public String processEditProductForm(@ModelAttribute("product") @Valid Product product, @RequestParam String vatRate, BindingResult result, Model model) {
-		if (result.hasErrors()) {
-			//model.addAttribute("vatRatesList", vatRatesListMap);
+		if (result.hasErrors() || !productService.validateNewProduct(product, result)) {
+			model.addAttribute("vatRatesList", vatRatesListMap);
 			return "editProduct";
 		}
 		productService.updateProduct(product);
-		return "redirect:/product";
+		return "redirect:/product/list";
 	}
 	
 	@RequestMapping("/product/remove/{id}")
 	public String removeProduct(@PathVariable("id") int id) {
 		this.productService.removeProduct(id);
-		return "redirect:/product";
+		return "redirect:/product/list";
 	}
 	
 	@InitBinder

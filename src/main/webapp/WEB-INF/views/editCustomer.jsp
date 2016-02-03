@@ -24,65 +24,81 @@
 						</div>
 						<form:form modelAttribute="customer" class="form-horizontal">
 							<div class="box-body">
-							<form:errors path="*" cssClass="alert alert-danger" element="div"/>
+								<form:errors path="*" cssClass="alert alert-danger"
+									element="div" />
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="companyName">Nazwa firmy</label>
+									<label class="col-sm-2 control-label" for="companyName">Nazwa
+										firmy</label>
 									<div class=col-sm-9>
-										<form:input id="companyName" path="companyName" type="text" class="form-control" />
-										<form:errors path="companyName" cssClass="text-danger"/>
+										<form:input id="companyName" path="companyName" type="text"
+											class="form-control" />
+										<form:errors path="companyName" cssClass="text-danger" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="vatIdNumber">Numer NIP</label>
+									<label class="col-sm-2 control-label" for="vatIdNumber">Numer
+										NIP</label>
 									<div class=col-sm-9>
-										<form:input id="vatIdNumber" path="vatIdNumber" type="text" class="form-control" />
-										<form:errors path="vatIdNumber" cssClass="text-danger"/>
+										<form:input id="vatIdNumber" path="vatIdNumber" type="text"
+											class="form-control" />
+										<form:errors path="vatIdNumber" cssClass="text-danger" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="streetName">Ulica</label>
 									<div class=col-sm-9>
-										<form:input id="streetName" path="streetName" type="text" class="form-control" />
-										<form:errors path="streetName" cssClass="text-danger"/>
+										<form:input id="streetName" path="streetName" type="text"
+											class="form-control" />
+										<form:errors path="streetName" cssClass="text-danger" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="streetNumber">Numer domu</label>
+									<label class="col-sm-2 control-label" for="streetNumber">Numer
+										domu</label>
 									<div class=col-sm-9>
-										<form:input id="streetNumber" path="streetNumber" type="text" class="form-control" />
-										<form:errors path="streetNumber" cssClass="text-danger"/>
+										<form:input id="streetNumber" path="streetNumber" type="text"
+											class="form-control" />
+										<form:errors path="streetNumber" cssClass="text-danger" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="apartmentNumber">Numer lokalu</label>
+									<label class="col-sm-2 control-label" for="apartmentNumber">Numer
+										lokalu</label>
 									<div class=col-sm-9>
-										<form:input id="apartmentNumber" path="apartmentNumber" type="text" class="form-control" />
-										<form:errors path="apartmentNumber" cssClass="text-danger"/>
+										<form:input id="apartmentNumber" path="apartmentNumber"
+											type="text" class="form-control" />
+										<form:errors path="apartmentNumber" cssClass="text-danger" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="postalCode">Kod pocztowy</label>
+									<label class="col-sm-2 control-label" for="postalCode">Kod
+										pocztowy</label>
 									<div class=col-sm-9>
-										<form:input id="postalCode" path="postalCode" type="text" class="form-control" />
-										<form:errors path="postalCode" cssClass="text-danger"/>
+										<form:input id="postalCode" path="postalCode" type="text"
+											class="form-control" />
+										<form:errors path="postalCode" cssClass="text-danger" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="cityName">Miejscowość</label>
 									<div class=col-sm-9>
-										<form:input id="cityName" path="cityName" type="text" class="form-control" />
-										<form:errors path="cityName" cssClass="text-danger"/>
+										<form:input id="cityName" path="cityName" type="text"
+											class="form-control" />
+										<form:errors path="cityName" cssClass="text-danger" />
 									</div>
 								</div>
 							</div>
 							<div class="box-footer">
-							<a href="<c:url value='/customer'/>" class="btn btn-default">Anuluj</a>
-							<button type="submit" class="btn btn-info pull-right">Zapisz</button>
+								<a href="<c:url value='/customer'/>" class="btn btn-default">Anuluj</a>
+								<button type="submit" class="btn btn-info pull-right">Zapisz</button>
 							</div>
 						</form:form>
 					</div>
 				</section>
 			</div>
 		</div>
+	</tiles:putAttribute>
+	<tiles:putAttribute name="scripts">
+		<div></div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>
