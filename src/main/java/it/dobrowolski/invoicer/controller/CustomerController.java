@@ -70,9 +70,16 @@ public class CustomerController {
 		return "redirect:/customer/list";
 	}
 
-	@RequestMapping("/customer/remove/{id}")
-	public String removeCustomer(@PathVariable("id") int id) {
-		this.customerService.removeCustomer(id);
+	@RequestMapping(value = "/customer/remove/{id}", method = RequestMethod.GET)
+	public String removeCustomerForm(@PathVariable("id") int id, Model model) {
+		model.addAttribute("customer", this.customerService.getCustomerById(id));
+		model.addAttribute("invoicesListByCustomerId", customerService.listInvoicesByCustomerId(id));
+		return "removeCustomer";
+	}
+	
+	@RequestMapping(value = "/customer/remove/{id}", method = RequestMethod.POST)
+	public String processremoveCustomerForm(@ModelAttribute("customer") @Valid Customer customer, BindingResult result) {
+		customerService.removeCustomer(customer.getId());
 		return "redirect:/customer/list";
 	}
 

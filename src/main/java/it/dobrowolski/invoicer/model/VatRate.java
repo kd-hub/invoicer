@@ -24,7 +24,6 @@ public class VatRate implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "vat_rate_id")
-	@NotNull
 	private Integer id;
 
 	@Column(name = "rate")
@@ -34,6 +33,15 @@ public class VatRate implements Serializable {
 
 	@OneToMany(mappedBy="vatRate")
 	private Set<Product> products;
+	
+	public VatRate() {
+		super();
+	}
+
+	public VatRate(Integer vatRate) {
+		super();
+		this.vatRate = vatRate;
+	}
 
 	public Integer getId() {
 		return id;

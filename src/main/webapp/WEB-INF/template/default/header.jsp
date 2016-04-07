@@ -12,24 +12,14 @@
 					<c:out
 						value="${requestScope['javax.servlet.forward.servlet_path']}" />
  -->
-					<li class="active"><a href="<c:url value='/customer/list' />">Klienci</a></li>
+					<li><a href="<c:url value='/customer/list' />">Klienci</a></li>
 					<li><a href="<c:url value='/product/list' />">Produkty</a></li>
 					<li><a href="<c:url value='/invoice/list' />">Faktury</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Raporty<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Raport 1</a></li>
-							<li><a href="#">Raport 2</a></li>
-							<li><a href="#">Raport 3</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Raport sprzedaży</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Raport magazynowy</a></li>
-						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Ustawienia<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="<c:url value='/vatrate/list' />">Stawki VAT</a></li>
+							<li><a href="<c:url value='/database' />">Baza danych</a></li>
 						</ul></li>
 				</ul>
 			</div>

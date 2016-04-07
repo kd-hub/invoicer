@@ -9,16 +9,17 @@ import org.springframework.stereotype.Repository;
 import it.dobrowolski.invoicer.dao.CustomerDAO;
 import it.dobrowolski.invoicer.exception.CustomerNotFoundException;
 import it.dobrowolski.invoicer.model.Customer;
+import it.dobrowolski.invoicer.model.Invoice;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
 
 	private SessionFactory sessionFactory;
-	
-	public void setSessionFactory(SessionFactory sessionFactory){
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Customer> listCustomers() {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -28,7 +29,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	public void addCustmer(Customer customer) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(customer);	
+		session.persist(customer);
 	}
 
 	public void removeCustomer(int id) {
@@ -44,7 +45,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public void updateCustomer(Customer customer) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(customer);
-		
 	}
 
 	public Customer getCustomerById(int id) {
@@ -54,6 +54,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 			throw new CustomerNotFoundException(id);
 		}
 		return customer;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Invoice> getInvoicessByCustomerId(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Invoice> invoicesByCustomerIdList = session.createQuery("from Invoice where customer_customer_id = :id")
+				.setParameter("id", id).list();
+		return invoicesByCustomerIdList;
 	}
 
 }

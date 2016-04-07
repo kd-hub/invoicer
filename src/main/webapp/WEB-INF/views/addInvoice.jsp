@@ -17,52 +17,78 @@
 						<div class="box-header with-border">
 							<h3 class="box-title">Nowa faktura</h3>
 						</div>
-						<form:form modelAttribute="newInvoice" class="form-horizontal">
-							<div class="box-body">
-								<form:errors path="*" cssClass="alert alert-danger"
-									element="div" />
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="customer">Klient</label>
-									<div class=col-sm-9>
-										<form:select path="customer">
-											<form:options items="${customersList}" />
-										</form:select>
+						<c:choose>
+							<c:when test="${noCustomerError == true || noProductError  == true}">
+								<div class="box-body">
+									<div class="alert alert-warning">
+										<h4>
+											<i class="icon fa fa-warning"></i> Nie można dodać faktury.
+										</h4>
+										<c:if test="${noCustomerError}">
+											<p>
+												Nie ma żadnego klienta. <a href="<c:url value='/customer/add'/>">Dodaj nowego klienta.</a>
+											</p>
+										</c:if>
+										<c:if test="${noProductError}">
+											<p>
+												Nie ma żadnego produktu. <a href="<c:url value='/product/add'/>">Dodaj nowy produkt.</a>
+											</p>
+										</c:if>
+									</div>
+									<div class="box-footer">
+										<a href="<c:url value='/invoice/list'/>" class="btn btn-default pull-right">Anuluj</a>
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="dateOfSale">Data
-										sprzedaży</label>
-									<div class="col-sm-9">
-										<form:input id="dateOfSale" path="dateOfSale" type="text"
-											readonly="true" />
-										<form:errors path="dateOfSale" cssClass="text-danger" />
+							</c:when>
+							<c:otherwise>
+								<form:form modelAttribute="newInvoice" class="form-horizontal">
+									<div class="box-body">
+										<form:errors path="*" cssClass="alert alert-danger"
+											element="div" />
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="customer">Klient</label>
+											<div class=col-sm-9>
+												<form:select path="customer">
+													<form:options items="${customersList}" />
+												</form:select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="dateOfSale">Data
+												sprzedaży</label>
+											<div class="col-sm-9">
+												<form:input id="dateOfSale" path="dateOfSale" type="text"
+													readonly="true" />
+												<form:errors path="dateOfSale" cssClass="text-danger" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="dateOfIssue">Data
+												wystawienia</label>
+											<div class=col-sm-9>
+												<form:input id="dateOfIssue" path="dateOfIssue" type="text"
+													readonly="true" />
+												<form:errors path="dateOfIssue" cssClass="text-danger" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="paymentDueDate">Termin
+												płatności</label>
+											<div class=col-sm-9>
+												<form:input id="paymentDueDate" path="paymentDueDate"
+													type="text" readonly="true" />
+												<form:errors path="paymentDueDate" cssClass="text-danger" />
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="dateOfIssue">Data
-										wystawienia</label>
-									<div class=col-sm-9>
-										<form:input id="dateOfIssue" path="dateOfIssue" type="text"
-											readonly="true" />
-										<form:errors path="dateOfIssue" cssClass="text-danger" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="paymentDueDate">Termin
-										płatności</label>
-									<div class=col-sm-9>
-										<form:input id="paymentDueDate" path="paymentDueDate"
-											type="text" readonly="true" />
-										<form:errors path="paymentDueDate" cssClass="text-danger" />
-									</div>
-								</div>
-							</div>
 
-							<div class="box-footer">
-								<a href="<c:url value='/invoice/list'/>" class="btn btn-default">Anuluj</a>
-								<button type="submit" class="btn btn-info pull-right">Dalej</button>
-							</div>
-						</form:form>
+									<div class="box-footer">
+										<a href="<c:url value='/invoice/list'/>" class="btn btn-default">Anuluj</a>
+										<button type="submit" class="btn btn-info pull-right">Dalej</button>
+									</div>
+								</form:form>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</section>
 			</div>

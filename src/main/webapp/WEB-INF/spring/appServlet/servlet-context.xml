@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 	<context:component-scan base-package="it.dobrowolski.invoicer" />
-
+	<context:property-placeholder location="classpath:database.properties" />
 	<annotation-driven validator="validator" />
 
 	<resources location="/resources/" mapping="/resources/**" />
@@ -43,9 +43,9 @@
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url"
-			value="jdbc:mysql://localhost:3306/testdb" />
-		<beans:property name="username" value="user" />
-		<beans:property name="password" value="user123" />
+			value="${database.jdbc}" />
+		<beans:property name="username" value="${database.username}" />
+		<beans:property name="password" value="${database.password}" />
 	</beans:bean>
 
 	<beans:bean id="hibernate4AnnotatedSessionFactory"
@@ -58,6 +58,7 @@
 				<beans:value>it.dobrowolski.invoicer.model.Product</beans:value>
 				<beans:value>it.dobrowolski.invoicer.model.Invoice</beans:value>
 				<beans:value>it.dobrowolski.invoicer.model.InvoiceLine</beans:value>
+				<beans:value>it.dobrowolski.invoicer.model.Database</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -77,7 +78,8 @@
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
 
-	<beans:bean id="customerDAO" class="it.dobrowolski.invoicer.dao.impl.CustomerDAOImpl">
+	<beans:bean id="customerDAO"
+		class="it.dobrowolski.invoicer.dao.impl.CustomerDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
@@ -86,7 +88,8 @@
 		<beans:property name="customerDAO" ref="customerDAO"></beans:property>
 	</beans:bean>
 
-	<beans:bean id="vatRateDAO" class="it.dobrowolski.invoicer.dao.impl.VatRateDAOImpl">
+	<beans:bean id="vatRateDAO"
+		class="it.dobrowolski.invoicer.dao.impl.VatRateDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
@@ -94,8 +97,9 @@
 		class="it.dobrowolski.invoicer.service.impl.VatRateServiceImpl">
 		<beans:property name="vatRateDAO" ref="vatRateDAO"></beans:property>
 	</beans:bean>
-	
-	<beans:bean id="productDAO" class="it.dobrowolski.invoicer.dao.impl.ProductDAOImpl">
+
+	<beans:bean id="productDAO"
+		class="it.dobrowolski.invoicer.dao.impl.ProductDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
@@ -104,7 +108,8 @@
 		<beans:property name="productDAO" ref="productDAO"></beans:property>
 	</beans:bean>
 
-	<beans:bean id="invoiceDAO" class="it.dobrowolski.invoicer.dao.impl.InvoiceDAOImpl">
+	<beans:bean id="invoiceDAO"
+		class="it.dobrowolski.invoicer.dao.impl.InvoiceDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
@@ -112,5 +117,15 @@
 		class="it.dobrowolski.invoicer.service.impl.InvoiceServiceImpl">
 		<beans:property name="invoiceDAO" ref="invoiceDAO"></beans:property>
 	</beans:bean>
-	
+
+	<beans:bean id="databaseDAO"
+		class="it.dobrowolski.invoicer.dao.impl.DatabaseDAOImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="databaseService"
+		class="it.dobrowolski.invoicer.service.impl.DatabaseServiceImpl">
+		<beans:property name="databaseDAO" ref="databaseDAO"></beans:property>
+	</beans:bean>
+
 </beans:beans>

@@ -45,11 +45,6 @@ public class Product implements Serializable{
 	@NotNull(message = "{Product.purchasePrice.validation}")
 	private BigDecimal purchasePrice;
 
-	@Column(name = "selling_price")
-	@Range(min = 0, max = 1000000, message = "{Product.sellingPrice.validation}")
-	@NotNull(message = "{Product.sellingPrice.validation}")
-	private BigDecimal sellingPrice;
-
 	@Column(name = "stock_quantity")
 	@Range(min = 0, max = 1000000, message = "{Product.stockQuantity.validation}")
 	@NotNull(message = "{Product.stockQuantity.validation}")
@@ -68,6 +63,18 @@ public class Product implements Serializable{
 	@Transient 
 	private BigDecimal itemSellingPrice;
 	
+	public Product() {
+		super();
+	}
+
+	public Product(String productName, BigDecimal purchasePrice, Integer stockQuantity, VatRate vatRate) {
+		super();
+		this.productName = productName;
+		this.purchasePrice = purchasePrice;
+		this.stockQuantity = stockQuantity;
+		this.vatRate = vatRate;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -90,14 +97,6 @@ public class Product implements Serializable{
 
 	public void setPurchasePrice(BigDecimal purchasePrice) {
 		this.purchasePrice = purchasePrice;
-	}
-
-	public BigDecimal getSellingPrice() {
-		return sellingPrice;
-	}
-
-	public void setSellingPrice(BigDecimal sellingPrice) {
-		this.sellingPrice = sellingPrice;
 	}
 
 	public Integer getStockQuantity() {

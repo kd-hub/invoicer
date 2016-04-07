@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 
 import it.dobrowolski.invoicer.dao.ProductDAO;
+import it.dobrowolski.invoicer.model.Invoice;
 import it.dobrowolski.invoicer.model.Product;
 import it.dobrowolski.invoicer.service.ProductService;
 
@@ -24,7 +25,6 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	public void addProduct(Product product) {
 		this.productDAO.addProduct(product);
-		
 	}
 
 	@Transactional
@@ -46,13 +46,10 @@ public class ProductServiceImpl implements ProductService {
 	public Product getProductById(int id) {
 		return this.productDAO.getProductById(id);
 	}
-
-	public boolean validateNewProduct(Product product, Errors errors) {
-		if (product.getSellingPrice().compareTo(product.getPurchasePrice()) < 0 ) {
-			errors.rejectValue("sellingPrice", "Product.sellingPrice.error");
-			return false;
-		}
-		return true;
+	
+	@Transactional
+	public List<Invoice> listInvoicesByProductId(int id) {
+		return this.productDAO.getInvoicessByProductId(id);
 	}
 
 	public boolean validateSelectedProduct(Product product, Errors errors) {
@@ -62,7 +59,6 @@ public class ProductServiceImpl implements ProductService {
 		if (product.getItemSellingQuantity() == null) {
 			errors.rejectValue("selectedProduct.itemSellingQuantity", "Product.itemSellingQuantity.notnull");
 		}
-		System.out.println("B£ÊDY: " + errors.getAllErrors().toString());
 		if (!errors.getAllErrors().isEmpty()) {
 			return false;	
 		}
@@ -78,4 +74,5 @@ public class ProductServiceImpl implements ProductService {
 			return true;			
 		}
 	}
+
 }

@@ -84,6 +84,16 @@ public class InvoiceController {
 		model.addAttribute("newInvoice", newInvoice);
 		customersListMap = getCustomers();
 		model.addAttribute("customersList", customersListMap);
+		boolean noCustomerError = false;
+		if (customersListMap.size() == 0) {
+			noCustomerError = true;
+		}
+		model.addAttribute("noCustomerError", noCustomerError);
+		boolean noProductError = false;
+		if (getProducts().size() == 0) {
+			noProductError = true;
+		}
+		model.addAttribute("noProductError", noProductError);
 		return "addInvoice";
 	}
 
@@ -108,7 +118,7 @@ public class InvoiceController {
 	}
 
 	@RequestMapping(value = "/invoice/add/items", method = RequestMethod.POST)
-	public String processaddNewInvoiceItemForm(@ModelAttribute("newInvoice") @Valid Invoice newInvoice,
+	public String processAddNewInvoiceItemForm(@ModelAttribute("newInvoice") @Valid Invoice newInvoice,
 			BindingResult result, Model model) {
 		if (result.hasErrors() || !productService.validateSelectedProduct(newInvoice.getSelectedProduct(), result)) {
 			model.addAttribute("productsList", newInvoice.getProductsListMap());
@@ -131,12 +141,22 @@ public class InvoiceController {
 	}
 
 	@RequestMapping(value = "/invoice/add/comlete", method = RequestMethod.POST)
-	public String processaddNewInvoiceFormComplete(@ModelAttribute("newInvoice") @Valid Invoice newInvoice,
+	public String processAddNewInvoiceFormComplete(@ModelAttribute("newInvoice") @Valid Invoice newInvoice,
 			BindingResult result, Model model) {
 		if (newInvoice.getInvoiceLines().size() > 0) {
-			invoiceService.addInvoice(newInvoice);
-			model.addAttribute("invoicesList", invoiceService.listInvoices());
-			return "invoicesList";
+			if(invoiceService.addInvoice(newInvoice)) {
+				int id = newInvoice.getId();
+				model.addAttribute("invoice", this.invoiceService.getInvoiceById(id));
+				model.addAttribute("invoiceAddSuccess", true);
+		        return "viewInvoice";
+			} else {
+				newInvoice.getInvoiceLines().clear();
+				model.addAttribute("newInvoice", newInvoice);
+				newInvoice.setProductsListMap(getProducts());
+				model.addAttribute("productsList", newInvoice.getProductsListMap());
+				model.addAttribute("invoiceAddErrors", true);
+				return "addInvoiceItem";
+			}
 		} else {
 			return "redirect:/invoice/add/items";
 		}

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.dobrowolski.invoicer.dao.CustomerDAO;
 import it.dobrowolski.invoicer.model.Customer;
+import it.dobrowolski.invoicer.model.Invoice;
 import it.dobrowolski.invoicer.service.CustomerService;
 
 @Service("customerService")
@@ -43,6 +44,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Transactional
 	public Customer getCustomerById(int id) {
 		return this.customerDAO.getCustomerById(id);
+	}
+
+	@Transactional
+	public List<Invoice> listInvoicesByCustomerId(int id) {
+		return this.customerDAO.getInvoicessByCustomerId(id);
 	}
 
 }

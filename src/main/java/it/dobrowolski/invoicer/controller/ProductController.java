@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.dobrowolski.invoicer.exception.ProductNotFoundException;
@@ -68,7 +67,7 @@ public class ProductController {
 	@RequestMapping(value = "/product/add", method = RequestMethod.POST)
 	public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product newProduct,
 			BindingResult result, Model model) {
-		if (result.hasErrors() || !productService.validateNewProduct(newProduct, result)) {
+		if (result.hasErrors()) {
 			model.addAttribute("vatRatesList", vatRatesListMap);
 			return "addProduct";
 		}
@@ -85,8 +84,8 @@ public class ProductController {
     }
 	
 	@RequestMapping(value="/product/edit/{id}", method = RequestMethod.POST)
-	public String processEditProductForm(@ModelAttribute("product") @Valid Product product, @RequestParam String vatRate, BindingResult result, Model model) {
-		if (result.hasErrors() || !productService.validateNewProduct(product, result)) {
+	public String processEditProductForm(@ModelAttribute("product") @Valid Product product, BindingResult result, Model model) {
+		if (result.hasErrors()) {
 			model.addAttribute("vatRatesList", vatRatesListMap);
 			return "editProduct";
 		}
@@ -94,10 +93,12 @@ public class ProductController {
 		return "redirect:/product/list";
 	}
 	
-	@RequestMapping("/product/remove/{id}")
-	public String removeProduct(@PathVariable("id") int id) {
-		this.productService.removeProduct(id);
-		return "redirect:/product/list";
+	@RequestMapping(value = "/product/remove/{id}", method = RequestMethod.GET)
+	public String removeProductForm(@PathVariable("id") int id, Model model) {
+		model.addAttribute("product", this.productService.getProductById(id));
+		model.addAttribute("invoicesListByProductId", productService.listInvoicesByProductId(id));
+		System.out.println(productService.listInvoicesByProductId(id).size());
+		return "removeProduct";
 	}
 	
 	@InitBinder

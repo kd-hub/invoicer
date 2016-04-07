@@ -16,7 +16,6 @@
 							<tr>
 								<th>Nazwa produktu</th>
 								<th>Cena zakupu</th>
-								<th>Cena sprzedaży</th>
 								<th>Ilość w magazynie</th>
 								<th>Stawka VAT</th>
 								<th>Edytuj</th>
@@ -26,7 +25,6 @@
 								<tr>
 									<td>${product.productName}</td>
 									<td>${product.purchasePrice}</td>
-									<td>${product.sellingPrice}</td>
 									<td>${product.stockQuantity}</td>
 									<td>${product.vatRate.vatRate}%</td>
 									<td><a

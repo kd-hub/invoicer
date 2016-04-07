@@ -40,15 +40,6 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="sellingPrice">Cena
-										sprzedaży</label>
-									<div class=col-sm-9>
-										<form:input id="sellingPrice" path="sellingPrice" type="text"
-											class="form-control" />
-										<form:errors path="sellingPrice" cssClass="text-danger" />
-									</div>
-								</div>
-								<div class="form-group">
 									<label class="col-sm-2 control-label" for="stockQuantity">Ilość
 										w magazynie</label>
 									<div class=col-sm-9>

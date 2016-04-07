@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.dobrowolski.invoicer.dao.VatRateDAO;
+import it.dobrowolski.invoicer.model.Product;
 import it.dobrowolski.invoicer.model.VatRate;
 import it.dobrowolski.invoicer.service.VatRateService;
 
@@ -26,6 +27,11 @@ public class VatRateServiceImpl implements VatRateService {
 	}
 
 	@Transactional
+	public void removeVatRate(int id) {
+		this.vatRateDAO.removeVatRate(id);
+	}
+	
+	@Transactional
 	public List<VatRate> listVatRates() {
 		return this.vatRateDAO.listVatRates();
 	}
@@ -35,4 +41,9 @@ public class VatRateServiceImpl implements VatRateService {
 		return this.vatRateDAO.getVatRateById(id);
 	}
 
+	@Transactional
+	public List<Product> listProductsByVatRateId(int id) {
+		return this.vatRateDAO.getProductsByVatRateId(id);
+	}
+	
 }

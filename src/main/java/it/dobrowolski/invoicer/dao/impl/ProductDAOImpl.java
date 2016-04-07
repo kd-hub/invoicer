@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import it.dobrowolski.invoicer.dao.ProductDAO;
 import it.dobrowolski.invoicer.exception.ProductNotFoundException;
+import it.dobrowolski.invoicer.model.Invoice;
 import it.dobrowolski.invoicer.model.Product;
 
 @Repository
@@ -32,12 +33,16 @@ public class ProductDAOImpl implements ProductDAO {
 		} else {
 			throw new ProductNotFoundException(id);
 		}
-
 	}
 
 	public void updateProduct(Product product) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(product);
+	}
+
+	public void mergeProduct(Product product) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.merge(product);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -54,5 +59,15 @@ public class ProductDAOImpl implements ProductDAO {
 			throw new ProductNotFoundException(id);
 		}
 		return product;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Invoice> getInvoicessByProductId(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Invoice> invoicesByProductIdList = (List<Invoice>) session
+				.createSQLQuery(
+						"Select invoice_id, date_of_sale, payment_due_date, date_of_issue, total_amount_net, total_amount_gross, customer_customer_id from invoice, invoice_line_item where invoice.invoice_id = invoice_line_item.invoice_invoice_id and invoice_line_item.product_product_id = :id")
+				.addEntity(Invoice.class).setParameter("id", id).list();
+		return invoicesByProductIdList;
 	}
 }
