@@ -101,6 +101,12 @@ public class ProductController {
 		return "removeProduct";
 	}
 	
+	@RequestMapping(value = "/product/remove/{id}", method = RequestMethod.POST)
+	public String processremoveProductForm(@ModelAttribute("product") @Valid Product product, BindingResult result) {
+		productService.removeProduct(product.getId());
+		return "redirect:/product/list";
+	}
+	
 	@InitBinder
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
 	    binder.registerCustomEditor(VatRate.class, "vatRate", new PropertyEditorSupport() {

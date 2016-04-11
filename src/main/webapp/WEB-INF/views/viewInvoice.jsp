@@ -35,7 +35,16 @@
 						</div>
 					</div>
 					<div class="row invoice-info">
-						<div class="col-sm-8 invoice-col">
+						<div class="col-sm-4 invoice-col">
+							Sprzedawca:
+							<address>
+								<strong>Hurtownia Spożywcza</strong><br>
+								Lwowska 34<br>
+								31-712 Kraków<br>
+								NIP: 642-864-73-41<br>
+							</address>
+						</div>
+						<div class="col-sm-5 invoice-col">
 							Nabywca:
 							<address>
 								<strong>${invoice.customer.companyName}</strong><br>
@@ -45,7 +54,7 @@
 								NIP: ${invoice.customer.vatIdNumber}<br>
 							</address>
 						</div>
-						<div class="col-sm-4 invoice-col">
+						<div class="col-sm-3 invoice-col">
 							<b>Data sprzedaży:</b><br>
 							<fmt:formatDate value="${invoice.dateOfSale}"
 								pattern="dd-MM-yyyy" />

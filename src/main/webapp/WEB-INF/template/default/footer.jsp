@@ -5,6 +5,6 @@
 		<div class="pull-right hidden-xs">
 			Kod źródłowy na <a href="https://github.com/kd-hub/invoicer" target='_blank'>GitHub</a>
 		</div>
-		Copyright &copy; Karol Dobrowolski
+		&copy; 2016 Karol Dobrowolski
 	</div>
 </footer>

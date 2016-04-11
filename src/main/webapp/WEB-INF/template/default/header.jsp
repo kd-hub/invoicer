@@ -15,11 +15,12 @@
 					<li><a href="<c:url value='/customer/list' />">Klienci</a></li>
 					<li><a href="<c:url value='/product/list' />">Produkty</a></li>
 					<li><a href="<c:url value='/invoice/list' />">Faktury</a></li>
+					<li><a href="<c:url value='/vatrate/list' />">Stawki VAT</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Ustawienia<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="<c:url value='/vatrate/list' />">Stawki VAT</a></li>
 							<li><a href="<c:url value='/database' />">Baza danych</a></li>
+							<li><a href="<c:url value='/' />">O aplikacji</a></li>
 						</ul></li>
 				</ul>
 			</div>

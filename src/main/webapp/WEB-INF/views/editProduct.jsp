@@ -59,7 +59,7 @@
 								</div>
 							</div>
 							<div class="box-footer">
-								<a href="<c:url value='/product'/>" class="btn btn-default">Anuluj</a>
+								<a href="<c:url value='/product/list'/>" class="btn btn-default">Anuluj</a>
 								<button type="submit" class="btn btn-info pull-right">Zapisz</button>
 							</div>
 						</form:form>
